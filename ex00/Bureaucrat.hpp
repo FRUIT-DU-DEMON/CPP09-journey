@@ -1,20 +1,25 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 15:37:34 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/06 14:48:55 by hlabouit         ###   ########.fr       */
+/*   Created: 2023/11/18 03:46:46 by hlabouit          #+#    #+#             */
+/*   Updated: 2024/02/06 14:48:40 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include"Bureaucrat.hpp"
+#ifndef BUREAUCRAT_H
+# define BUREAUCRAT_H
 
-int main(int ac, char **av)
-{
-    (void)ac;
-    (void)av;
-    std::cout<< "Module 05 started" << std::endl;
-}
+#include<fstream>
+#include<iostream>
+#include<string>
+#include<iomanip>
+#include<ctype.h>
+#include<cstdlib>
+#include<cmath>
+
+
+#endif
