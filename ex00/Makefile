@@ -6,11 +6,11 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 15:44:52 by hlabouit          #+#    #+#              #
-#    Updated: 2024/02/06 14:48:30 by hlabouit         ###   ########.fr        #
+#    Updated: 2024/02/07 20:43:55 by hlabouit         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = Bureaucrat
+NAME = bureaucrat
 CPPFILES = main.cpp
 CPPOFILES = $(CPPFILES:%.cpp=%.o)
 CPPC = c++

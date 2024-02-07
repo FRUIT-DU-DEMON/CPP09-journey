@@ -6,15 +6,13 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:37:34 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/06 14:48:55 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/07 23:23:47 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include"Bureaucrat.hpp"
 
-int main(int ac, char **av)
+int main()
 {
-    (void)ac;
-    (void)av;
-    std::cout<< "Module 05 started" << std::endl;
+	Bureaucrat brc("II", 1);
 }
