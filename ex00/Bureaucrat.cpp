@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:58:47 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/09 01:34:15 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/09 22:19:22 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -48,16 +48,23 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::incrementGrade()
 {
-    this->grade--;
-    if (this->grade < 1)
+    if (this->grade <= 1)
         throw Bureaucrat::GradeTooHighException();
+    this->grade--;//before or after throwing an excp!!
+    // std::cout<< "HEEEREERRERERE" << std::endl;
 }
 
 void Bureaucrat::decrementGrade()
 {
-    this->grade++;
-    if (this->grade > 150)
+    if (this->grade >= 150)
         throw Bureaucrat::GradeTooLowException();
+    this->grade++;
+}
+
+std::ostream &operator<<(std::ostream &output_console, const Bureaucrat &brc)
+{
+    output_console << brc.getName() << ", bureaucrat grade " << brc.getGrade() << ".";
+    return (output_console);
 }
 
 Bureaucrat::~Bureaucrat()

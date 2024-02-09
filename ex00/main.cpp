@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:37:34 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/07 23:23:47 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/09 22:21:56 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,5 +14,15 @@
 
 int main()
 {
-	Bureaucrat brc("II", 1);
+	try
+	{
+		Bureaucrat brc("IVXX", 1);
+		std::cout << brc << std::endl;
+		brc.incrementGrade();
+	}
+	catch(const std::exception &excp)//any exception derived from std::exception thrown get caught 
+	{
+		std::cout << excp.what() << std::endl;
+	}
+	return (0);
 }

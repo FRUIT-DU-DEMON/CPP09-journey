@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:46:46 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/09 01:27:43 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/09 22:14:33 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,6 +32,8 @@ class Bureaucrat {
 		Bureaucrat &operator=(const Bureaucrat &primary);
 		const std::string &getName() const;
 		int getGrade() const;
+        void incrementGrade();
+        void decrementGrade();
         ////// exeption classes //////
         class GradeTooHighException : public std::exception {
             public:
@@ -46,9 +48,9 @@ class Bureaucrat {
                 virtual const char *what() const throw() {return ("GRADE IS OUT OF RANGE!");}
         };
         ////// exeption classes //////
-        void incrementGrade();
-        void decrementGrade();
 		~Bureaucrat();
 };
+
+std::ostream &operator<<(std::ostream &output_console, const Bureaucrat &brc);
 
 #endif
