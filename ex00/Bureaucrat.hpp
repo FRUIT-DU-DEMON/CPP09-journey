@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:46:46 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/09 01:07:43 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/09 01:27:43 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,7 @@
 class Bureaucrat {
 	private:
 		const std::string name;
-		int grade;
+		int grade;//!!usgnd
 	public:
 		Bureaucrat();
         Bureaucrat(const std::string &which_name, int which_grade);
@@ -36,6 +36,10 @@ class Bureaucrat {
         class GradeTooHighException : public std::exception {
             public:
                 virtual const char *what() const throw() {return ("GRADE IS OUT OF RANGE!");}
+                //costum exeption classes inherit from std::exception baseclass
+                //what() provides a description of the exception and returns a C style char*
+                //where thow() is an exception specifications that specifies that what() doesn't throw exceptions
+
         };
         class GradeTooLowException : public std::exception {
             public:
