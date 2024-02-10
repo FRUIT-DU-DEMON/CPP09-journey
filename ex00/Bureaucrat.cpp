@@ -6,13 +6,13 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:58:47 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/09 22:19:22 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:03:43 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include"Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : name("brc"), grade(150)
 {
 }
 
@@ -24,9 +24,8 @@ Bureaucrat::Bureaucrat(const std::string &which_name, int which_grade) : name(wh
         throw Bureaucrat::GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &primary)
+Bureaucrat::Bureaucrat(const Bureaucrat &primary) : name(primary.name), grade(primary.grade)
 {
-    *this = primary;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &primary)

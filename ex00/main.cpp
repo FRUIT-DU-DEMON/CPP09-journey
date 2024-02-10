@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:37:34 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:18 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:33:45 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,7 +16,7 @@ int main()
 {
 	try
 	{
-		Bureaucrat brc("IVXX", 1);
+		Bureaucrat brc("VanGogh", 1);
 		std::cout << brc << std::endl;
 		brc.incrementGrade();
 		std::cout << brc << std::endl;//won't be executed because an excp's been thrown
