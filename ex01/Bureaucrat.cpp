@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:58:47 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/11 02:46:34 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 04:05:24 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,7 +69,7 @@ void Bureaucrat::signForm(Form form)
 	}
 	catch(const std::exception &excp)
 	{
-		std::cout<< this->name << " couldn’t sign " << form.getName() << " because " << excp.what() << std::endl;//to output the reason here
+		std::cout<< this->name << " couldn’t sign " << form.getName() << " because its " << excp.what() << std::endl;//to output the reason here
 	}
 }
 
