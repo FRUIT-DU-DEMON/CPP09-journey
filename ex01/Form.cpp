@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 23:52:56 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/11 00:14:35 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 02:42:15 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -40,6 +40,11 @@ const std::string &Form::getName() const
 	return (this->name);
 }
 
+bool Form::getSign() const
+{
+	return (this->if_signed);
+}
+
 int Form::getGrade_sg() const
 {
 	return (this->grade_sg);
@@ -50,11 +55,11 @@ int Form::getGrade_ex() const
 	return (this->grade_ex);
 }
 
-void Form::beSigned(const Bureaucrat &brc)
+void Form::beSigned(Bureaucrat brc)
 {
 	if (brc.getGrade() <= this->grade_sg)
 		this->if_signed = true;
-	else 
+	else
 		throw Form::GradeTooLowException();
 }
 

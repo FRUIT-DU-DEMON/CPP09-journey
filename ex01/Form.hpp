@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:26:43 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/11 00:01:04 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 02:35:07 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,9 +27,10 @@ class Form {
         Form(const Form &primary);
         Form &operator=(const Form &primary);
         const std::string &getName() const;
+        bool getSign() const;
 		int getGrade_sg() const;
 		int getGrade_ex() const;
-        void beSigned(const Bureaucrat &brc);
+        void beSigned(Bureaucrat brc);
         ////// exeption classes //////
         class GradeTooHighException : public std::exception {
             public:

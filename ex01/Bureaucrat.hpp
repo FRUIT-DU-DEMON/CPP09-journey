@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:46:46 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/10 18:50:54 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 02:36:49 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,6 +21,8 @@
 #include<cstdlib>
 #include<cmath>
 
+#include"Form.hpp"
+
 class Bureaucrat {
 	private:
 		const std::string name;
@@ -34,6 +36,7 @@ class Bureaucrat {
 		int getGrade() const;
         void incrementGrade();
         void decrementGrade();
+        void signForm(Form form);
         ////// exeption classes //////
         class GradeTooHighException : public std::exception {
             public:
