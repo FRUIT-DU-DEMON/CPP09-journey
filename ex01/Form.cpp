@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 23:52:56 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/10 23:59:42 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 00:14:35 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -48,6 +48,14 @@ int Form::getGrade_sg() const
 int Form::getGrade_ex() const
 {
 	return (this->grade_ex);
+}
+
+void Form::beSigned(const Bureaucrat &brc)
+{
+	if (brc.getGrade() <= this->grade_sg)
+		this->if_signed = true;
+	else 
+		throw Form::GradeTooLowException();
 }
 
 std::ostream &operator<<(std::ostream &output_console, const Form &brc_form)
