@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 23:52:56 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/11 02:54:37 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 03:07:53 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -66,9 +66,9 @@ void Form::beSigned(Bureaucrat brc)
 std::ostream &operator<<(std::ostream &output_console, const Form &brc_form)
 {
 	if (brc_form.getSign() == true)
-		output_console << "      " << brc_form.getName() << "      " << std::endl << "grade_sg: " << brc_form.getGrade_sg() << std::endl << "grade_ex: " << brc_form.getGrade_ex() << std::endl << "      FORM SIGNED      " << std::endl;\
+		output_console << "******* " << brc_form.getName() << " *******" << std::endl << "-> grade_sg: " << brc_form.getGrade_sg() << std::endl << "-> grade_ex: " << brc_form.getGrade_ex() << std::endl << "******* FORM SIGNED *******";
 	else if (brc_form.getSign() == false)
-		output_console << "      " << brc_form.getName() << "      " << std::endl << "grade_sg: " << brc_form.getGrade_sg() << std::endl << "grade_ex: " << brc_form.getGrade_ex() << std::endl << "      FORM isn't SIGNED      " << std::endl;
+		output_console << "******* " << brc_form.getName() << " *******" << std::endl << "-> grade_sg: " << brc_form.getGrade_sg() << std::endl << "-> grade_ex: " << brc_form.getGrade_ex() << std::endl << "******* FORM isn't SIGNED *******";
 	return (output_console);
 }
 

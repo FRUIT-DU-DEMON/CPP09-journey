@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:26:43 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/11 02:35:07 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 03:02:26 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,6 +14,8 @@
 # define FORM_H
 
 #include"Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form {
     private:

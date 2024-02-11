@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:46:46 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/11 02:36:49 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/11 03:03:19 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,6 +22,7 @@
 #include<cmath>
 
 #include"Form.hpp"
+class Form;
 
 class Bureaucrat {
 	private:
