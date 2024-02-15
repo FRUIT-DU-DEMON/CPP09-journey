@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 23:52:56 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/12 01:09:40 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/15 04:32:46 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -61,6 +61,14 @@ void AForm::beSigned(Bureaucrat brc)
 		this->if_signed = true;
 	else
 		throw AForm::GradeTooLowException();
+}
+
+void AForm::check_requirements(Bureaucrat brc) const
+{
+	if (this->if_signed == false)
+		throw AForm::UnsignedForm();
+	if (brc.getGrade() > this->grade_ex)
+		throw AForm::GradeTooHighException();
 }
 
 std::ostream &operator<<(std::ostream &output_console, const AForm &brc_form)

@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 00:12:36 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/14 02:45:56 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/15 02:12:32 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,6 +25,10 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(const ShrubberyCreationForm &primary);
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &primary);
 		void execute(Bureaucrat const &executor) const;
+		class NotOpened : public std::exception {
+        	public:
+                virtual const char *what() const throw() {return ("FAILED TO OPEN THE TARGET FILE!");}
+        };
 		~ShrubberyCreationForm();
 };
 

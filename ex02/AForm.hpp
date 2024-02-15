@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:26:43 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/14 02:45:48 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/15 04:32:42 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,6 +33,7 @@ class AForm {
 		int getGrade_sg() const;
 		int getGrade_ex() const;
         void beSigned(Bureaucrat brc);
+        void check_requirements(Bureaucrat brc) const;
         void virtual execute(Bureaucrat const &executor) const = 0;//pure virtual function
         ////// exeption classes //////
         class GradeTooHighException : public std::exception {
@@ -43,6 +44,10 @@ class AForm {
         class GradeTooLowException : public std::exception {
             public:
                 virtual const char *what() const throw() {return ("GRADE IS OUT OF RANGE!");}
+        };
+        class UnsignedForm : public std::exception {
+            public:
+                virtual const char *what() const throw() {return ("FORM ISN't SIGNED!");}
         };
         ////// exeption classes //////
         ~AForm();
