@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 01:23:28 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/15 04:48:19 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:45:18 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,8 +34,8 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	std::string tmp = this->target + "_shrubbery";
     check_requirements(executor);
+	std::string tmp = this->target + "_shrubbery";
     std::ofstream tree(tmp.c_str());
     if (!tree.is_open())
         throw ShrubberyCreationForm::NotOpened();
