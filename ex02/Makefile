@@ -6,11 +6,11 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 15:44:52 by hlabouit          #+#    #+#              #
-#    Updated: 2024/02/16 00:52:36 by hlabouit         ###   ########.fr        #
+#    Updated: 2024/02/16 16:41:52 by hlabouit         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = bordel
+NAME = aform
 CPPFILES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
            RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 CPPOFILES = $(CPPFILES:%.cpp=%.o)

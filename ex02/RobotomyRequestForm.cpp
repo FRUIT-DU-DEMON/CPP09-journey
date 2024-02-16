@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:24:12 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/15 23:55:55 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:56:51 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string &which_target) : AFor
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &primary) : AForm(primary)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &primary) : AForm(primary), target(primary.target)
 {
 	*this = primary;
 }

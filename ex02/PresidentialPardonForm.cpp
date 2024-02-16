@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 23:54:47 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/16 00:02:11 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:27:03 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string &which_target) 
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &primary) : AForm(primary)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &primary) : AForm(primary), target(primary.target)
 {
 	*this = primary;
 }

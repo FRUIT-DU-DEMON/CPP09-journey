@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 01:23:28 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/15 14:45:18 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:57:06 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &which_target) : 
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &primary) : AForm(primary)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &primary) : AForm(primary), target(primary.target)
 {
     *this = primary;
 }
