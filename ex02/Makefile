@@ -6,13 +6,13 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 15:44:52 by hlabouit          #+#    #+#              #
-#    Updated: 2024/02/15 17:16:40 by hlabouit         ###   ########.fr        #
+#    Updated: 2024/02/16 00:52:36 by hlabouit         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = bordel
 CPPFILES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
-           RobotomyRequestForm.cpp
+           RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 CPPOFILES = $(CPPFILES:%.cpp=%.o)
 CPPC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-w -w -w -g c++98
