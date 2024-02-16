@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:46:46 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/14 02:45:24 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/16 01:06:18 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,6 +38,7 @@ class Bureaucrat {
         void incrementGrade();
         void decrementGrade();
         void signForm(AForm &form);//takes a reference to AForm through a class inherits from AForm since it has a subObject part and an abstract class cant be instantiated on it's own because it's incomplete
+        void executeForm(AForm const & form);
         ////// exeption classes //////
         class GradeTooHighException : public std::exception {
             public:
