@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 22:26:43 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/15 04:32:42 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/17 19:24:03 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -50,7 +50,7 @@ class AForm {
                 virtual const char *what() const throw() {return ("FORM ISN't SIGNED!");}
         };
         ////// exeption classes //////
-        ~AForm();
+        virtual ~AForm();
 };
 
 std::ostream &operator<<(std::ostream &output_console, const AForm &brc_form);

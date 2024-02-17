@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:31:12 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/17 18:03:27 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/17 21:59:56 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,25 +26,30 @@ Intern::Intern(const Intern &primary)
 
 Intern &Intern::operator=(const Intern &primary)
 {
+    (void)primary;
 	return (*this);
 }
 
 AForm *Intern::makeForm(const std::string &which_form_name, const std::string &which_form_target)
 {
-    std::string form_name[] = {"shForm", "rbForm", "prForm"};
-    AForm *formPtr [] = {new ShrubberyCreationForm(which_form_target), new RobotomyRequestForm(which_form_target), new PresidentialPardonForm(which_form_target)};
+    std::string form_name[3] = {"shForm", "rbForm", "prForm"};
+    AForm *formPtr [3] = {new ShrubberyCreationForm(which_form_target),
+						new RobotomyRequestForm(which_form_target),
+						new PresidentialPardonForm(which_form_target)};
     for (int i = 0; i < 3; i++)
     {
         if (which_form_name == form_name[i])
         {
             std::cout<< "Intern creates " << form_name[i] << std::endl;
             if (i == 1)
-                return (delete formPtr[i - 1], delete formPtr[i + 1], formPtr[i]);
+                return (delete formPtr[abs(i - 1)], delete formPtr[abs(i + 1)], formPtr[i]);
             else
                 return (delete formPtr[abs(i - 1)], delete formPtr[abs(i - 2)], formPtr[i]);
         }
     }
     std::cout<< "no matching form name for " << which_form_name << "!" << std::endl;
+	for (int i = 0; i < 3; i++)
+		delete formPtr[i];
     return (NULL);
 }
 
