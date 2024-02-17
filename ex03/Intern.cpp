@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 21:31:12 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/17 21:59:56 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/17 22:24:19 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,7 +32,7 @@ Intern &Intern::operator=(const Intern &primary)
 
 AForm *Intern::makeForm(const std::string &which_form_name, const std::string &which_form_target)
 {
-    std::string form_name[3] = {"shForm", "rbForm", "prForm"};
+    std::string form_name[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     AForm *formPtr [3] = {new ShrubberyCreationForm(which_form_target),
 						new RobotomyRequestForm(which_form_target),
 						new PresidentialPardonForm(which_form_target)};
@@ -47,16 +47,12 @@ AForm *Intern::makeForm(const std::string &which_form_name, const std::string &w
                 return (delete formPtr[abs(i - 1)], delete formPtr[abs(i - 2)], formPtr[i]);
         }
     }
-    std::cout<< "no matching form name for " << which_form_name << "!" << std::endl;
 	for (int i = 0; i < 3; i++)
 		delete formPtr[i];
+	throw Intern::UnmatchedName();
     return (NULL);
 }
 
 Intern::~Intern()
 {
 }
-
-// i = 0:  d1 d2
-// i = 1:  d0 d2
-// i = 2:  d1 d0

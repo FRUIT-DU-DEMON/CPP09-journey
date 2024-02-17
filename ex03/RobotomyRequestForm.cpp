@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:24:12 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/15 23:55:55 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/17 22:17:28 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,7 +35,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &p
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
 	check_requirements(executor);
-	std::cout<< "chenyoul kheddam" << std::endl;
+	std::cout<< "TRRRRRRRRRRRRR..." ;
 	static int random;
 	if (random % 2 == 0)
 		std::cout<< this->target << " has been robotomized successfully '50%' of the time" << std::endl;
