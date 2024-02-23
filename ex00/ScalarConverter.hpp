@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/22 01:13:31 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/23 03:12:41 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct t_casts
     char char_val;
     float float_val;
     double double_val;
+    int flag;
+    size_t position;
 } t_casts;
 
 
@@ -42,5 +44,7 @@ class ScalarConverter {
         static void convert(std::string input);
         ~ScalarConverter();
 };
+
+int parsing(std::string input);
 
 #endif
