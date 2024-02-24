@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:36 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/24 22:26:41 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/24 22:57:08 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 int main()
 {
-	char* ch = new char('G');
-	int* p = reinterpret_cast<int *>(ch);
-	std::cout << *p << std::endl;
-	std::cout << *ch << std::endl;
-	std::cout << p << std::endl;
-	std::cout << ch << std::endl;
-	return 0;
+	Data data;
+	Data *deserialize_data;
+	uintptr_t serialized_data;
+
+	data.value = 5;
+	serialized_data = Serializer::serialize(&data);
+	deserialize_data = Serializer::deserialize(serialized_data);
+
+	if (deserialize_data != &data)
+		std::cout<< "failed to serialize data" << std::endl;
+	else
+		std::cout<< "data is serialized" << std::endl;
+		
+	// std::cout << std::hex << serialized_data << std::endl;
+	// std::cout << deserialize_data<< std::endl;
 }
