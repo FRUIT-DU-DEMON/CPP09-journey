@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/24 04:03:05 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:07:07 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int     parsing(std::string input);
 t_casts char_to_casts(std::string input);
 t_casts float_double_to_casts(std::string input);
 t_casts int_to_casts(std::string input);
-void    display_casts(t_casts casts, bool non_dsp, int overflow);
+void    display_casts(t_casts casts, bool non_dsp, int overflow, double precision);
 
 #endif

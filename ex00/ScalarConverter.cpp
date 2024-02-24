@@ -6,11 +6,26 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/24 04:54:23 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:57:49 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ScalarConverter.hpp"
+
+ScalarConverter::ScalarConverter()
+{
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &primary)
+{
+	*this = primary;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &primary)
+{
+	(void)primary;
+	return (*this);
+}
 
 int parsing(std::string input)
 {
@@ -43,12 +58,6 @@ t_casts char_to_casts(std::string input)
 		std::stringstream ss;
 		ss << input;
 		ss >> casts.char_val;
-		// if (ss.fail() || !ss.eof())
-		// {
-		// 	casts.flag = -1;
-		// 	return (casts);
-		// }
-		puts("WEFDwef");
 		if (casts.char_val >= 32 && casts.char_val < 127)
 		{
 			casts.char_val = casts.char_val;
@@ -78,14 +87,15 @@ t_casts float_double_to_casts(std::string input)
 		{
 			input = input.substr(0, input.length() - 1);
 			ss << input;
-			ss >> casts.float_val;
 			ss >> overflow;
 			casts.int_val = overflow;
+			casts.float_val = overflow;
 			if (overflow < INT_MIN || overflow > INT_MAX)
 			{
 				casts.float_val = static_cast<float>(overflow);
 				casts.double_val = static_cast<double>(overflow);
-				display_casts(casts, true, -1);
+				display_casts(casts, true, -1, casts.double_val - casts.int_val);
+				casts.flag = 1;
 				return (casts);
 			}
 			casts.int_val = static_cast<int>(casts.float_val);
@@ -133,7 +143,8 @@ t_casts int_to_casts(std::string input)
 	{
 		casts.float_val = static_cast<float>(overflow);
 		casts.double_val = static_cast<double>(overflow);
-		display_casts(casts, true, -1);
+		display_casts(casts, true, -1, -1);
+		casts.flag = 1;
 		return (casts);
 	}
 	if (casts.int_val >= 32 && casts.int_val < 127)
@@ -146,7 +157,7 @@ t_casts int_to_casts(std::string input)
 	return (casts);
 }
 
-void display_casts(t_casts casts, bool non_dsp, int overflow)
+void display_casts(t_casts casts, bool non_dsp, int overflow, double precision)
 {
 	if (overflow == -1)
 	{
@@ -162,12 +173,19 @@ void display_casts(t_casts casts, bool non_dsp, int overflow)
 		std::cout<< "float: " << casts.float_val << ".0f" << std::endl;
 		std::cout<< "double: " << casts.double_val << ".0" << std::endl;
 	}
-	else 
+	else if (precision == 0)
 	{
 		std::cout<< "char: '" << casts.char_val << "'" << std::endl;
 		std::cout<< "int: " << casts.int_val << std::endl;
 		std::cout<< "float: " << casts.float_val << ".0f" << std::endl;
 		std::cout<< "double: " << casts.double_val << ".0" << std::endl;
+	}
+	else if (precision != 0)
+	{
+		std::cout<< "char: '" << casts.char_val << "'" << std::endl;
+		std::cout<< "int: " << casts.int_val << std::endl;
+		std::cout<< "float: " << casts.float_val << "f" << std::endl;
+		std::cout<< "double: " << casts.double_val << std::endl;
 	}
 }
 
@@ -179,25 +197,25 @@ void ScalarConverter::convert(std::string input)
 	{
 		casts = float_double_to_casts(input);
 		if (casts.non_dsp == true)
-			display_casts(casts, true, 1);
+			display_casts(casts, true, 1, casts.double_val - casts.int_val);
 		else
-			display_casts(casts, false, 1);
+			display_casts(casts, false, 1, casts.double_val - casts.int_val);
 	}
 	else if (int_to_casts(input).flag == 1)
 	{
 		casts = int_to_casts(input);
 		if (casts.non_dsp == true)
-			display_casts(casts, true, 1);
+			display_casts(casts, true, 1, -1);
 		else
-			display_casts(casts, false, 1);
+			display_casts(casts, false, 1, -1);
 	}
 	else if (char_to_casts(input).flag == 1)
 	{
 		casts = char_to_casts(input);
 		if (casts.non_dsp == true)
-			display_casts(casts, true, 1);
+			display_casts(casts, true, 1, -1);
 		else
-			display_casts(casts, false, 1);
+			display_casts(casts, false, 1, -1);
 	}
 	return;
 }
