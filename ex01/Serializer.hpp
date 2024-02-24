@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/24 20:09:53 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/24 22:16:21 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ typedef struct Data
 } Data;
 
 /*Serialization in C++ refers to the process of converting objects or data structures
- into a format that can be easily stored, transmitted, or reconstructed, and this operation
- involves converting the internal state of an object into a stream of bytes
- Serialized objects can be sent between different processes or even different machines over a network*/
+into a format that can be easily stored, transmitted, or reconstructed, and this operation
+involves converting the internal state of an object into a stream of bytes
+Serialized objects can be sent between different processes or even different machines over a network*/
 class Serializer {
     private:
         Serializer();
     public:
         Serializer(const Serializer &primary);
         Serializer &operator=(const Serializer &primary);
-        uintptr_t serialize(Data* ptr);
-        Data* deserialize(uintptr_t raw);
+        static uintptr_t serialize(Data* ptr);
+        static Data* deserialize(uintptr_t raw);
         ~Serializer();
 };
 
