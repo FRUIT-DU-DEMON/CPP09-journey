@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:36 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/25 01:18:20 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/25 01:22:25 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,36 @@ void identify(Base* p)
     else if (dynamic_cast<C *>(p) != NULL)
         std::cout<< "the actual type of the object pointed to by p is: C";
     else
-        std::cout<< "the object pointed to by p doesn't match any type";
+        std::cout<< "dynamic_cast failed to downcasts";
 }
 
 void identify(Base& p)
 {
+    try
+    {
+        dynamic_cast<A &>(p);
+    }
+    catch(const std::exception &excp)
+    {
+        std::cout<< excp.what() << std::endl;
+    }
+    try
+    {
+        dynamic_cast<B &>(p);
+    }
+    catch(const std::exception &excp)
+    {
+        std::cout<< excp.what() << std::endl;
+    }
+    try
+    {
+        dynamic_cast<C &>(p);
+    }
+    catch(const std::exception &excp)
+    {
+        std::cout<< excp.what() << std::endl;
+    }
 }
-
-
-
 
 int main()
 {
