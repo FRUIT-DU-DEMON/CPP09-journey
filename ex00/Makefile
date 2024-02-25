@@ -6,7 +6,7 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 15:44:52 by hlabouit          #+#    #+#              #
-#    Updated: 2024/02/25 17:53:02 by hlabouit         ###   ########.fr        #
+#    Updated: 2024/02/25 23:32:54 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-w -w -w -g c++98
 
 all: $(NAME)
 
-$(NAME) : $(CPPOFILES) 
+$(NAME) : $(CPPOFILES) whatever.hpp
 	@$(CPPC) $(CPPOFILES) -o $(NAME)
 
 %.o : %.cpp
