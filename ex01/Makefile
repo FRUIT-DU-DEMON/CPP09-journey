@@ -6,11 +6,11 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 15:44:52 by hlabouit          #+#    #+#              #
-#    Updated: 2024/02/26 00:26:44 by hlabouit         ###   ########.fr        #
+#    Updated: 2024/02/26 03:22:14 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = iter
+NAME = test
 CPPFILES = main.cpp
 CPPOFILES = $(CPPFILES:%.cpp=%.o)
 CPPC = c++

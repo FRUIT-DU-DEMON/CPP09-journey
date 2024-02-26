@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:36 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/26 02:08:00 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/26 03:25:54 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 int main()
 {
-    std::string array[] = {"CASA", "TO", "LAGOS"};
+    std::string array1[3] = {"CASA", "TO", "LAGOS"};
+    iter(array1, 3, display<std::string>);
     
-    iter(array, 3, called_on_elements<std::string>);
+    std::cout<< std::endl;
+
+    int array2[3] = {100, 500, 1000};
+    iter(array2, 3, display<int>);
+    
+    std::cout<< std::endl;
+    
+    double array3[3] = {1.1, 1.2, 1.3};
+    iter(array3, 3, display<double>);
     
     return (0);
 }
