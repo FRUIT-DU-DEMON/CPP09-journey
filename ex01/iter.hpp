@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/26 03:25:46 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:46:51 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include<sstream>
 
 template <typename TYPE, typename TYPE2>
-void iter(TYPE *array, int array_length, TYPE2 called_on_elements)
+void iter(TYPE *array, int array_length, void(*called_on_elements)(TYPE2 &element, int idx))
 {
     for (int i = 0; i < array_length; i++)
         called_on_elements(array[i], i);
