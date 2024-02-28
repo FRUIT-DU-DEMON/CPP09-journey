@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/26 15:46:51 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/25 23:49:47 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_H
-# define ITER_H
+#ifndef WHATEVER_H
+# define WHATEVER_H
 
 #include<fstream>
 #include<iostream>
@@ -22,17 +22,35 @@
 #include<cmath>
 #include<sstream>
 
-template <typename TYPE, typename TYPE2>
-void iter(TYPE *array, int array_length, void(*called_on_elements)(TYPE2 &element, int idx))
+/*templates are a powerful feature that allow you to write generic code
+ template is a blueprint for a piece of code that can work with any data type*/
+ 
+template <typename TYPE>//The compiler will generate code for a function that deals with the specified type
+void swap(TYPE &a, TYPE &b)
 {
-    for (int i = 0; i < array_length; i++)
-        called_on_elements(array[i], i);
+    TYPE tmp = a;
+    a = b;
+    b = tmp;
 }
 
 template <typename TYPE>
-void display(TYPE &element, int index)
+TYPE min(TYPE a, TYPE b)
 {
-    std::cout<< "element of index " << index << ": "<< element << std::endl;
+    if (a < b)
+        return (a);
+    if (b < a)
+        return (b);
+    return (b);
+}
+
+template <typename TYPE>
+TYPE max(TYPE a, TYPE b)
+{
+    if (a > b)
+        return (a);
+    if (b > a)
+        return (b);
+    return (b);
 }
 
 #endif
