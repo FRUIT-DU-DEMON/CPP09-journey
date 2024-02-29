@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/29 01:47:23 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/29 04:27:12 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Span {
     private:
         unsigned int N;
         std::vector<int> Vcontainer;
+        std::vector<int>::iterator itr;
         Span();
     public:
         Span(unsigned int N);
