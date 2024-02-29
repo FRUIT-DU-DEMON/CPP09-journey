@@ -6,14 +6,14 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/29 04:27:12 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/29 22:45:36 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_H
 # define SPAN_H
 
-#include<fstream>
+// #include<fstream>
 #include<iostream>
 #include<string>
 #include<iomanip>
@@ -29,15 +29,15 @@ class Span {
     private:
         unsigned int N;
         std::vector<int> Vcontainer;
-        std::vector<int>::iterator itr;
         Span();
     public:
         Span(unsigned int N);
         Span(const Span &primary);
         Span &operator=(const Span &primary);
         void addNumber(int to_add);
-        int shortestSpan() const;
-        int longestSpan() const;
+        int shortestSpan();
+        int longestSpan();
+        void insert_data(std::vector<int>::iterator itr_begin, std::vector<int>::iterator itr_end);
         ~Span();
 };
 
