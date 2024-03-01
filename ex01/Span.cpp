@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:36 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/29 22:46:32 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/01 02:50:18 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int Span::shortestSpan()
         throw "Vcontainer contains one number or none!";
     std::sort(this->Vcontainer.begin(), this->Vcontainer.end());
     int shortest_span = this->Vcontainer[1] - this->Vcontainer[0];
-    for (size_t i = 0; i < this->N - 1; i++)
+    for (size_t i = 0; i < this->Vcontainer.size() - 1; i++)
     {
         if ((this->Vcontainer[i + 1] - this->Vcontainer[i]) < shortest_span)
             shortest_span = this->Vcontainer[i + 1] - this->Vcontainer[i];

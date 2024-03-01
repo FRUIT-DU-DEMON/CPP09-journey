@@ -6,14 +6,14 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/02/29 22:45:36 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/02/29 22:47:37 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_H
 # define SPAN_H
 
-// #include<fstream>
+#include<fstream>
 #include<iostream>
 #include<string>
 #include<iomanip>
