@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:36 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/01 02:50:18 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/02 00:35:43 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int Span::longestSpan()
 
 void Span::insert_data(std::vector<int>::iterator itr_begin, std::vector<int>::iterator itr_end)
 {
+    if (itr_end - itr_begin < 0)
+        throw "invalid range itarators!";
     if ((this->Vcontainer.size() + (itr_end - itr_begin)) > N)
         throw "couldn't insert data: Vcontainer has reached it's capacity!";
     this->Vcontainer.insert(this->Vcontainer.end(), itr_begin, itr_end);
