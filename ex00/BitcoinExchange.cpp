@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 22:46:59 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/03 21:21:28 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/03 23:28:54 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void BitcoinExchange::insert_key_val_in_MC()
     {
         std::string key = line.substr(0, 10);//!!10
         std::string value = line.substr(11);
-        this->Mcontainer_data[key] = atoi(value.c_str());
+        this->Mcontainer_data[key] = atof(value.c_str());
     }
     is.close();
 }
@@ -101,18 +101,15 @@ void BitcoinExchange::parsing(std::string data_base)
     double year = to_number(YY);
     double month = to_number(MM);
     double day = to_number(DD);
-    
+
     if (year < 2008)
         throw std::runtime_error("invalid YEAR: 2008>>");
+    if (month == 2 && day > 29)
+        throw std::runtime_error("invalid ferbuary month: 01-29");
     if (month < 1 || month > 12)
-    {
-        if (month == 2 && day > 29)
-            throw std::runtime_error("invalid ferbuary month: 01-29");
         throw std::runtime_error("invalid MONTH: 01-12");
-    }
     if (day < 1 || day > 31)
         throw std::runtime_error("invalid DAY: 01-31");
-        
     double btc_value = to_number(value);
     if (btc_value < 0 || btc_value > 1000)
         throw std::runtime_error("invalid btc value: 0-1000");
@@ -121,9 +118,9 @@ void BitcoinExchange::parsing(std::string data_base)
     // printf("%s | %s\n", date.c_str(), value.c_str());
     // printf("date: [%s] -------------------- value: [%s]\n", date.c_str(), value.c_str());
 
-    std::map<std::string, int>::iterator itr =  this->Mcontainer_data.lower_bound(date);
-    std::map<std::string, int>::iterator itr_begin =  this->Mcontainer_data.begin();
-    if (date < itr_begin->first)
+    std::map<std::string, double>::iterator itr =  this->Mcontainer_data.lower_bound(date);
+    std::map<std::string, double>::iterator itr_begin =  this->Mcontainer_data.begin();
+    if (date < itr_begin->first) //protection if date is earlier than first date
     {
         date = itr_begin->first;
         // std::cout << "data lower bound FIRST DATE: " << itr_begin->first << std::endl;
@@ -132,13 +129,14 @@ void BitcoinExchange::parsing(std::string data_base)
     else if (itr->first != date)
     {   
         itr--;
-        std::cout << "data lower bound NEAREST DATE: " << itr->first << std::endl;
+        // std::cout << "data lower bound NEAREST DATE: " << itr->first << std::endl;
     }
-    else
-    {
-        std::cout << "data lower bound SAME: " << itr->first << std::endl;
-    }
+    // else
+    // {
+    //     // std::cout << "data lower bound SAME: " << itr->first << std::endl;
+    // }
     
+    // std::cout << itr->second << std::endl;
     // $> ./btc input.txt
     // 2011-01-03 => 3 = 0.9
     // 2011-01-03 => 2 = 0.6
@@ -149,5 +147,6 @@ void BitcoinExchange::parsing(std::string data_base)
     // Error: bad input => 2001-42-42
     // 2012-01-11 => 1 = 7.1
     // Error: too large a number.
+    std::cout << date << " => " << value << " = " << (itr->second * btc_value) << std::endl;
 
 }

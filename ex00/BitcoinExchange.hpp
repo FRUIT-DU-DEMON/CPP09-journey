@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/03 18:58:37 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:57:45 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@
  
 class BitcoinExchange {
     private:
-        std::map<std::string, int> Mcontainer_data;
+        std::map<std::string, double> Mcontainer_data;
 
     public:
         void parsing(std::string date);
         void insert_key_val_in_MC();
         void read_input_file(std::string input_file);
         double to_number(std::string str);
+        void display_BTCexchange();
         
 };
 
