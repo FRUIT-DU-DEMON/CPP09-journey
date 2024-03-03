@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 22:46:59 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/03 18:59:10 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:21:28 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void BitcoinExchange::insert_key_val_in_MC()
     }
     is.close();
 }
-
 
 
 void BitcoinExchange::read_input_file(std::string input_file)
@@ -120,9 +119,35 @@ void BitcoinExchange::parsing(std::string data_base)
 
 
     // printf("%s | %s\n", date.c_str(), value.c_str());
-    printf("[%s]\n", date.c_str());
+    // printf("date: [%s] -------------------- value: [%s]\n", date.c_str(), value.c_str());
 
-
-    // std::map<std::string, int>::iterator itr =  this->Mcontainer_data.lower_bound(date);
+    std::map<std::string, int>::iterator itr =  this->Mcontainer_data.lower_bound(date);
+    std::map<std::string, int>::iterator itr_begin =  this->Mcontainer_data.begin();
+    if (date < itr_begin->first)
+    {
+        date = itr_begin->first;
+        // std::cout << "data lower bound FIRST DATE: " << itr_begin->first << std::endl;
+        
+    }
+    else if (itr->first != date)
+    {   
+        itr--;
+        std::cout << "data lower bound NEAREST DATE: " << itr->first << std::endl;
+    }
+    else
+    {
+        std::cout << "data lower bound SAME: " << itr->first << std::endl;
+    }
     
+    // $> ./btc input.txt
+    // 2011-01-03 => 3 = 0.9
+    // 2011-01-03 => 2 = 0.6
+    // 2011-01-03 => 1 = 0.3
+    // 2011-01-03 => 1.2 = 0.36
+    // 2011-01-09 => 1 = 0.32
+    // Error: not a positive number.
+    // Error: bad input => 2001-42-42
+    // 2012-01-11 => 1 = 7.1
+    // Error: too large a number.
+
 }
