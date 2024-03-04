@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/04 04:29:40 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:50:35 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 #include<algorithm>
 #include<iterator>
 #include<vector>
+#include<stack>
 #include<map>
  
-void parsing(std::string input);
+void RPN(std::string input);
 bool check_if_arithmetic_operator(char ao);
-bool check_if_number(std::string str);
+bool check_if_number(std::stack<double> &Scontainer, std::string &stream_content);
 
 #endif
