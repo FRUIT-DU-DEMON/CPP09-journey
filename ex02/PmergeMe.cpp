@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 22:46:59 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/05 04:04:59 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:15:27 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,42 @@ double ss_to_nbr(std::string stream_contenet)
 
 void generate_combination(int unsorted_pairs_seconds_size, std::vector<int> &js_ri_combination)
 {
-    int js_numbers[unsorted_pairs_seconds_size];
+    int js_numbers[unsorted_pairs_seconds_size + 10];
 
     js_numbers[0] = 0;
     js_numbers[1] = 1;
     int limit = 2;
     
     //generate jacob sthal numbers
-    for (int i = 2; i < unsorted_pairs_seconds_size; i++)
+    for (size_t i = 2; js_ri_combination.size() < static_cast<size_t>(unsorted_pairs_seconds_size); i++)
     {
-        js_numbers[i] = js_numbers[i - 1] + (2 * js_numbers[i - 2]);//[2] = 1; [3] = 3
-        js_ri_combination.push_back(js_numbers[i]);// 1, 3, 2
-        for (int j = js_numbers[i] - 1; j > limit; j--)//j = 2; ;j > 1
+        js_numbers[i] = js_numbers[i - 1] + (2 * js_numbers[i - 2]);
+        js_ri_combination.push_back(js_numbers[i]);
+        for (int j = js_numbers[i] - 1; j > limit; j--)
+        {
             js_ri_combination.push_back(j);
-        limit = js_numbers[i];// 1 3
+        }
+        limit = js_numbers[i];
+        // printf("[%d]\n", i);
+    }
+}
+
+void generate_combination_DC(int unsorted_pairs_seconds_size, std::deque<int> &js_ri_combination)
+{
+    int js_numbers[unsorted_pairs_seconds_size + 10];
+
+    js_numbers[0] = 0;
+    js_numbers[1] = 1;
+    int limit = 2;
+    
+    //generate jacob sthal numbers
+    for (int i = 2; js_ri_combination.size() < static_cast<size_t>(unsorted_pairs_seconds_size); i++)
+    {
+        js_numbers[i] = js_numbers[i - 1] + (2 * js_numbers[i - 2]);
+        js_ri_combination.push_back(js_numbers[i]);
+        for (int j = js_numbers[i] - 1; j > limit; j--)
+            js_ri_combination.push_back(j);
+        limit = js_numbers[i];
     }
 }
 
@@ -66,7 +88,8 @@ long long	get_current_time(void)
 	return (current_time);
 }
 
-void parsing(std::string input)
+
+void sort_VC(std::string input)
 {
     if (input.empty())
         throw "empty input!";
@@ -81,6 +104,7 @@ void parsing(std::string input)
     
     while (ss >> stream_content)
         Vcontainer.push_back(ss_to_nbr(stream_content));
+
     pop_dup(Vcontainer);
     //get current time
 
@@ -129,7 +153,6 @@ void parsing(std::string input)
             continue;
         std::vector<int>::iterator itr =  std::lower_bound(Vsorted_pairs_firsts.begin(), Vsorted_pairs_firsts.end(), value);
         Vsorted_pairs_firsts.insert(itr, value);
-
     }
     if(last != -1)
     {
@@ -145,6 +168,7 @@ void parsing(std::string input)
     if (last != -1)
         std::cout << last;
     std::cout << '\n';
+    std::cout << '\n';
     std::cout << "After : ";
     for (size_t i = 0; i < Vsorted_pairs_firsts.size(); i++)
     {
@@ -153,5 +177,71 @@ void parsing(std::string input)
     time = get_current_time() - time;
     std::cout << '\n';
     std::cout << "Time to process a range of " << VC_size << " elements with std::vector : " << time << " us" << std::endl;
+    sort_DC(input);
+    
 }
 
+void sort_DC(std::string input)
+{
+    if (input.empty())
+        throw "empty input!";
+    std::stringstream ss(input);
+    std::string stream_content;
+    std::deque<int> Vcontainer;
+    std::deque<int> Vsorted_pairs_firsts;
+    std::deque<int> Vunsorted_pairs_seconds;
+    std::deque<int> js_ri_combination;
+    std::deque<std::pair<int, int> > Vpairs;
+    int last = -1;
+    
+    while (ss >> stream_content)
+        Vcontainer.push_back(ss_to_nbr(stream_content));
+
+    size_t VC_size = Vcontainer.size();
+    long long time = get_current_time();
+    if ((Vcontainer.size() % 2) != 0)
+    {
+        last = Vcontainer[Vcontainer.size() - 1];
+        Vcontainer.pop_back();
+    }
+    //combine pairs
+
+    for (size_t i = 0; i < Vcontainer.size(); i += 2)
+    {
+        if (Vcontainer[i + 1] > Vcontainer[i])
+            Vpairs.push_back(std::make_pair(Vcontainer[i + 1], Vcontainer[i]));
+        else
+            Vpairs.push_back(std::make_pair(Vcontainer[i], Vcontainer[i + 1]));
+    }
+    std::sort(Vpairs.begin(), Vpairs.end());
+    for (size_t i = 0; i < Vpairs.size(); i++)
+    {
+        if (i == 0)
+        {
+            Vsorted_pairs_firsts.push_back(Vpairs[i].second);
+            Vsorted_pairs_firsts.push_back(Vpairs[i].first);
+        }
+        else
+            Vsorted_pairs_firsts.push_back(Vpairs[i].first);
+        Vunsorted_pairs_seconds.push_back(Vpairs[i].second);
+    }
+    generate_combination_DC(Vunsorted_pairs_seconds.size() + 2, js_ri_combination);
+    int value;
+    for (size_t i = 0; i < Vunsorted_pairs_seconds.size(); i++)
+    {
+        if (js_ri_combination[i] >= static_cast<int>(Vunsorted_pairs_seconds.size()))
+            js_ri_combination[i] = i;
+        value = Vunsorted_pairs_seconds[js_ri_combination[i]];
+        if (std::find(Vsorted_pairs_firsts.begin(),  Vsorted_pairs_firsts.end(), value) != Vsorted_pairs_firsts.end())
+            continue;
+        std::deque<int>::iterator itr =  std::lower_bound(Vsorted_pairs_firsts.begin(), Vsorted_pairs_firsts.end(), value);
+        Vsorted_pairs_firsts.insert(itr, value);
+    }
+    if(last != -1)
+    {
+        std::deque<int>::iterator itr =  std::lower_bound(Vsorted_pairs_firsts.begin(), Vsorted_pairs_firsts.end(), last);
+        Vsorted_pairs_firsts.insert(itr, last);
+    }
+    time = get_current_time() - time;
+    std::cout << "Time to process a range of " << VC_size << " elements with std::deque  : " << time << " us" << std::endl;
+}

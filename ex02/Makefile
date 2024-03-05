@@ -6,7 +6,7 @@
 #    By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 15:44:52 by hlabouit          #+#    #+#              #
-#    Updated: 2024/03/04 23:46:03 by hlabouit         ###   ########.fr        #
+#    Updated: 2024/03/05 21:38:31 by hlabouit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = PmergeMe
 CPPFILES = main.cpp PmergeMe.cpp
 CPPOFILES = $(CPPFILES:%.cpp=%.o)
 CPPC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-w -w -w -g c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address #-w -w -w -g c++98
 
 all: $(NAME)
 

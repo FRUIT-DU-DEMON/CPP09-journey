@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:36 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/04 23:57:48 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:13:53 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int ac, char **av)
     }
     try
     {
-        parsing(av[1]);
+        sort_VC(av[1]);
     }
     catch(const char *excp)
     {
