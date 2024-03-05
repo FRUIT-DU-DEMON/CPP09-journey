@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 22:46:59 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/05 02:51:12 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 04:04:59 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,28 @@ void generate_combination(int unsorted_pairs_seconds_size, std::vector<int> &js_
             js_ri_combination.push_back(j);
         limit = js_numbers[i];// 1 3
     }
-    
-    // printing combination
-    // for (size_t i = 0; i < js_ri_combination.size(); i++)
-    //     std::cout<< js_ri_combination[i] << std::endl;
+}
 
+void pop_dup(std::vector<int> &Vcontainer)
+{
+    for (size_t i = 0; i < Vcontainer.size(); i++)
+    {
+        for (size_t j = 0; j < Vcontainer.size(); j++)
+        {
+            if (i != j && Vcontainer[i] == Vcontainer[j])
+                throw "duplicated numbers!";
+        }
+    }
+}
+
+long long	get_current_time(void)
+{
+	struct timeval	tv;
+	long long		current_time;
+
+	gettimeofday(&tv, NULL);
+	current_time = (tv.tv_sec * 1000000) + tv.tv_usec;
+	return (current_time);
 }
 
 void parsing(std::string input)
@@ -64,6 +81,11 @@ void parsing(std::string input)
     
     while (ss >> stream_content)
         Vcontainer.push_back(ss_to_nbr(stream_content));
+    pop_dup(Vcontainer);
+    //get current time
+
+    size_t VC_size = Vcontainer.size();
+    long long time = get_current_time();
     if ((Vcontainer.size() % 2) != 0)
     {
         last = Vcontainer[Vcontainer.size() - 1];
@@ -87,27 +109,49 @@ void parsing(std::string input)
     {
         if (i == 0)
         {
-            Vsorted_pairs_firsts.push_back(Vpairs[i].first);
             Vsorted_pairs_firsts.push_back(Vpairs[i].second);
+            Vsorted_pairs_firsts.push_back(Vpairs[i].first);
         }
         else
             Vsorted_pairs_firsts.push_back(Vpairs[i].first);
         Vunsorted_pairs_seconds.push_back(Vpairs[i].second);
     }
-    generate_combination(Vunsorted_pairs_seconds.size(), js_ri_combination);
+    generate_combination(Vunsorted_pairs_seconds.size() + 2, js_ri_combination);
+    
+    
+    int value;
+    for (size_t i = 0; i < Vunsorted_pairs_seconds.size(); i++)
+    {
+        if (js_ri_combination[i] >= static_cast<int>(Vunsorted_pairs_seconds.size()))
+            js_ri_combination[i] = i;
+        value = Vunsorted_pairs_seconds[js_ri_combination[i]];
+        if (std::find(Vsorted_pairs_firsts.begin(),  Vsorted_pairs_firsts.end(), value) != Vsorted_pairs_firsts.end())
+            continue;
+        std::vector<int>::iterator itr =  std::lower_bound(Vsorted_pairs_firsts.begin(), Vsorted_pairs_firsts.end(), value);
+        Vsorted_pairs_firsts.insert(itr, value);
 
-    
-    
-    // for (size_t i = 0; i < Vsorted_pairs_firsts.size(); i++)
-    // {
-    //     std::cout << "sorted: " << Vsorted_pairs_firsts[i] << std::endl;
-    // }
-    // for (size_t i = 0; i < Vunsorted_pairs_seconds.size(); i++)
-    // {
-    //     std::cout << "unsorted: " << Vunsorted_pairs_seconds[i] << std::endl;
-    // }
+    }
+    if(last != -1)
+    {
+        std::vector<int>::iterator itr =  std::lower_bound(Vsorted_pairs_firsts.begin(), Vsorted_pairs_firsts.end(), last);
+        Vsorted_pairs_firsts.insert(itr, last);
+    }
 
-    
-    
+    std::cout << "Before: ";
+    for (size_t i = 0; i < Vcontainer.size(); i++)
+    {
+        std::cout << Vcontainer[i] << " ";
+    }
+    if (last != -1)
+        std::cout << last;
+    std::cout << '\n';
+    std::cout << "After : ";
+    for (size_t i = 0; i < Vsorted_pairs_firsts.size(); i++)
+    {
+        std::cout << Vsorted_pairs_firsts[i] << " ";
+    }
+    time = get_current_time() - time;
+    std::cout << '\n';
+    std::cout << "Time to process a range of " << VC_size << " elements with std::vector : " << time << " us" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/05 01:47:14 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 03:56:26 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include<cmath>
 #include<sstream>
 #include<algorithm>
+# include<sys/time.h>
 #include<iterator>
 #include<vector>
 #include<stack>
