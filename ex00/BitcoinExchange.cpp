@@ -6,11 +6,27 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 22:46:59 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/03 23:28:54 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:18:25 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"BitcoinExchange.hpp"
+
+BitcoinExchange::BitcoinExchange()
+{
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &primary)
+{
+    *this = primary;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &primary)
+{
+    if (this != &primary)
+        this->Mcontainer_data = primary.Mcontainer_data;
+    return (*this);
+}
 
 void BitcoinExchange::insert_key_val_in_MC()
 {
@@ -23,16 +39,15 @@ void BitcoinExchange::insert_key_val_in_MC()
         exit(EXIT_FAILURE);
     }
     //inserting key-val in the map container
-    std::getline(is, line); // skip first line of csv file
+    std::getline(is, line);
     while (std::getline(is, line))
     {
-        std::string key = line.substr(0, 10);//!!10
+        std::string key = line.substr(0, 10);
         std::string value = line.substr(11);
         this->Mcontainer_data[key] = atof(value.c_str());
     }
     is.close();
 }
-
 
 void BitcoinExchange::read_input_file(std::string input_file)
 {
@@ -77,7 +92,6 @@ double BitcoinExchange::to_number(std::string str)
 
 void BitcoinExchange::parsing(std::string data_base)
 {
-    //check date
     if (data_base.empty())
         throw std::runtime_error("stream failed to open data file!");
     if (data_base.find(" | ") == std::string::npos)
@@ -87,9 +101,7 @@ void BitcoinExchange::parsing(std::string data_base)
     std::string value = data_base.substr(pos + 3);//throws an excp if it fails
     if (date.length() != 10 || value.empty() || value.find(" ") != std::string::npos)
         throw std::runtime_error("invalid date or value!");
-        
-    //check value
-    
+
     std::stringstream ss(date);
     std::string YY;
     std::string MM;
@@ -114,39 +126,16 @@ void BitcoinExchange::parsing(std::string data_base)
     if (btc_value < 0 || btc_value > 1000)
         throw std::runtime_error("invalid btc value: 0-1000");
 
-
-    // printf("%s | %s\n", date.c_str(), value.c_str());
-    // printf("date: [%s] -------------------- value: [%s]\n", date.c_str(), value.c_str());
-
     std::map<std::string, double>::iterator itr =  this->Mcontainer_data.lower_bound(date);
     std::map<std::string, double>::iterator itr_begin =  this->Mcontainer_data.begin();
     if (date < itr_begin->first) //protection if date is earlier than first date
-    {
         date = itr_begin->first;
-        // std::cout << "data lower bound FIRST DATE: " << itr_begin->first << std::endl;
-        
-    }
     else if (itr->first != date)
-    {   
         itr--;
-        // std::cout << "data lower bound NEAREST DATE: " << itr->first << std::endl;
-    }
-    // else
-    // {
-    //     // std::cout << "data lower bound SAME: " << itr->first << std::endl;
-    // }
     
-    // std::cout << itr->second << std::endl;
-    // $> ./btc input.txt
-    // 2011-01-03 => 3 = 0.9
-    // 2011-01-03 => 2 = 0.6
-    // 2011-01-03 => 1 = 0.3
-    // 2011-01-03 => 1.2 = 0.36
-    // 2011-01-09 => 1 = 0.32
-    // Error: not a positive number.
-    // Error: bad input => 2001-42-42
-    // 2012-01-11 => 1 = 7.1
-    // Error: too large a number.
     std::cout << date << " => " << value << " = " << (itr->second * btc_value) << std::endl;
+}
 
+BitcoinExchange::~BitcoinExchange()
+{
 }
