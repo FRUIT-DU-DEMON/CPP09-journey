@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 22:46:59 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/05 22:15:27 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:52:47 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ double ss_to_nbr(std::string stream_contenet)
     return (number);
 }
 
-void generate_combination(int unsorted_pairs_seconds_size, std::vector<int> &js_ri_combination)
+template <typename CONTAINER>
+void generate_combination(int unsorted_pairs_seconds_size, CONTAINER &js_ri_combination)
 {
     int js_numbers[unsorted_pairs_seconds_size + 10];
 
@@ -47,24 +48,24 @@ void generate_combination(int unsorted_pairs_seconds_size, std::vector<int> &js_
     }
 }
 
-void generate_combination_DC(int unsorted_pairs_seconds_size, std::deque<int> &js_ri_combination)
-{
-    int js_numbers[unsorted_pairs_seconds_size + 10];
+// void generate_combination_DC(int unsorted_pairs_seconds_size, std::deque<int> &js_ri_combination)
+// {
+//     int js_numbers[unsorted_pairs_seconds_size + 10];
 
-    js_numbers[0] = 0;
-    js_numbers[1] = 1;
-    int limit = 2;
+//     js_numbers[0] = 0;
+//     js_numbers[1] = 1;
+//     int limit = 2;
     
-    //generate jacob sthal numbers
-    for (int i = 2; js_ri_combination.size() < static_cast<size_t>(unsorted_pairs_seconds_size); i++)
-    {
-        js_numbers[i] = js_numbers[i - 1] + (2 * js_numbers[i - 2]);
-        js_ri_combination.push_back(js_numbers[i]);
-        for (int j = js_numbers[i] - 1; j > limit; j--)
-            js_ri_combination.push_back(j);
-        limit = js_numbers[i];
-    }
-}
+//     //generate jacob sthal numbers
+//     for (int i = 2; js_ri_combination.size() < static_cast<size_t>(unsorted_pairs_seconds_size); i++)
+//     {
+//         js_numbers[i] = js_numbers[i - 1] + (2 * js_numbers[i - 2]);
+//         js_ri_combination.push_back(js_numbers[i]);
+//         for (int j = js_numbers[i] - 1; j > limit; j--)
+//             js_ri_combination.push_back(j);
+//         limit = js_numbers[i];
+//     }
+// }
 
 void pop_dup(std::vector<int> &Vcontainer)
 {
@@ -225,7 +226,7 @@ void sort_DC(std::string input)
             Vsorted_pairs_firsts.push_back(Vpairs[i].first);
         Vunsorted_pairs_seconds.push_back(Vpairs[i].second);
     }
-    generate_combination_DC(Vunsorted_pairs_seconds.size() + 2, js_ri_combination);
+    generate_combination(Vunsorted_pairs_seconds.size() + 2, js_ri_combination);
     int value;
     for (size_t i = 0; i < Vunsorted_pairs_seconds.size(); i++)
     {
