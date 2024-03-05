@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 22:46:59 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/04 21:44:09 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:04:08 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,17 @@ bool check_if_arithmetic_operator(char ao)
 
 void RPN(std::string input)
 {
+    if (input.empty())
+        throw "empty input!";
     std::stringstream ss;
     std::stack<double> Scontainer;
     ss << input;
-    
+
     std::string stream_content;
     while (ss >> stream_content)
     {
         if (stream_content.length() > 1 || isdigit(stream_content[0]))
-        {
             check_if_number(Scontainer, stream_content);
-            // printf("[%d]\n", atoi(stream_content.c_str()));
-        }
         else
         {
             check_if_arithmetic_operator(stream_content[0]);
@@ -78,4 +77,3 @@ void RPN(std::string input)
     int res = Scontainer.top();
     std::cout<< res << std::endl;
 }
-
