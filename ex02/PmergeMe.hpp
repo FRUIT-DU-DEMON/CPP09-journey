@@ -6,7 +6,7 @@
 /*   By: hlabouit <hlabouit@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 22:33:08 by hlabouit          #+#    #+#             */
-/*   Updated: 2024/03/05 22:52:04 by hlabouit         ###   ########.fr       */
+/*   Updated: 2024/03/05 23:36:54 by hlabouit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 double ss_to_nbr(std::string stream_contenet);
 template <typename CONTAINER>
 void generate_combination(int unsorted_pairs_seconds_size, CONTAINER &js_ri_combination);
+long long	get_current_time();
 void pop_dup(std::vector<int> &Vcontainer);
 void sort_VC(std::string input);
 void sort_DC(std::string input);
